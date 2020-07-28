@@ -68,4 +68,20 @@ module.exports = {
 
     return res.json('Checkin alterado com sucesso!');
   },
+
+  async contagem(req, res) {
+    const { diaCulto, horario } = req.params;
+
+    const dataCulto = format(
+      new Date(2020, 7, diaCulto, 0, 0, 0),
+      'dd/MM/yyyy',
+    );
+
+    const numeroInscricoes = await Culto.find({
+      dataCulto,
+      checkin: horario,
+    }).countDocuments();
+
+    return res.json(numeroInscricoes);
+  },
 };
