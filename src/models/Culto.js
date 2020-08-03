@@ -9,6 +9,7 @@ const CultoSchema = new Schema(
     email: {
       type: String,
       required: true,
+      lowercase: true,
     },
     telefone: {
       type: Number,

@@ -77,11 +77,17 @@ module.exports = {
       'dd/MM/yyyy',
     );
 
-    const numeroInscricoes = await Culto.find({
+    const total = await Culto.find({
       dataCulto,
       checkin: horario,
     }).countDocuments();
 
-    return res.json(numeroInscricoes);
+    const totalPresentes = await Culto.find({
+      dataCulto,
+      checkin: horario,
+      compareceu: true,
+    }).countDocuments();
+
+    return res.json({ total, totalPresentes });
   },
 };
