@@ -4,7 +4,7 @@
   "main": "server.js",
   "license": "MIT",
   "scripts": {
-    "dev:server": "NODE_ENV=dev nodemon",
+    "dev": "NODE_ENV=dev nodemon",
     "start": "node server.js"
   },
   "dependencies": {
