@@ -13,7 +13,7 @@ module.exports = {
   async store(req, res) {
     const { nome, idade, responsavel } = req.body;
     const hoje = new Date();
-    const dataFinal = new Date(2020, 9, 12);
+    const dataFinal = new Date(2020, 9, 14);
 
     if (isAfter(hoje, dataFinal)) {
       return res
