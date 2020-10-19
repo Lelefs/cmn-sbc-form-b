@@ -1,5 +1,4 @@
 const Culto = require('../models/Culto');
-const { format } = require('date-fns');
 const { formataNome } = require('../utils/PrimeiraLetraMaiuscula');
 require('dotenv/config');
 
