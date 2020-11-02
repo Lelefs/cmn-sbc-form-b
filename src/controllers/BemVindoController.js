@@ -10,7 +10,8 @@ module.exports = {
   },
 
   async store(req, res) {
-    const { nome, telefone, email, batismoNovoMembro, participaCelula, nomeLider } = req.body;
+    const { nome, telefone, batismoNovoMembro, participaCelula, nomeLider } = req.body;
+    const email = req.body.email.toLowerCase();
 
     const emailExiste = await BemVindo.findOne({ email });
 

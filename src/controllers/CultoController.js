@@ -14,7 +14,8 @@ module.exports = {
   },
 
   async store(req, res) {
-    const { nome, email, telefone, horario } = req.body;
+    const { nome, telefone, horario } = req.body;
+    const email = req.body.email.toLowerCase();
     const proximoDia = process.env.DIA;
 
     const dataCulto = new Date(2020, 10, proximoDia, 0, 0, 0);
