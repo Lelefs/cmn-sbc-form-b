@@ -1,6 +1,5 @@
 const Culto = require('../models/Culto');
 const { formataNome } = require('../utils/PrimeiraLetraMaiuscula');
-const { sendMessage } = require('../websocket');
 require('dotenv/config');
 
 module.exports = {
@@ -47,7 +46,7 @@ module.exports = {
   },
 
   async update(req, res) {
-    const { _id } = req.body;
+    const { _id, compareceuSimNao } = req.body;
 
     const culto = await Culto.findById({ _id });
 
@@ -59,9 +58,7 @@ module.exports = {
         );
     }
 
-    await Culto.updateOne({ _id }, { compareceu: !culto.compareceu });
-
-    sendMessage('novo-checkin', _id);
+    await Culto.updateOne({ _id }, { compareceu: compareceuSimNao });
 
     return res.json('Checkin alterado com sucesso!');
   },
