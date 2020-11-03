@@ -1,8 +1,13 @@
+const http = require('http');
 const app = require('./src/app');
+const { setupWebsocket } = require('./src/websocket');
 require('dotenv/config');
 
-var apiPort = process.env.PORT || 3333;
+const server = http.Server(app);
+setupWebsocket(server);
 
-app.listen(apiPort, function () {
+const apiPort = process.env.PORT || 3333;
+
+server.listen(apiPort, function () {
   console.log(`🚀️ Backend is running on port ${apiPort}!`);
 });

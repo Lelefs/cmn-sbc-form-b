@@ -10,24 +10,28 @@ module.exports = {
   },
 
   async store(req, res) {
-    const { nome, telefone, batismoNovoMembro, participaCelula, nomeLider } = req.body;
+    const {
+      nome,
+      telefone,
+      batismoNovoMembro,
+      participaCelula,
+      nomeLider,
+    } = req.body;
     const email = req.body.email.toLowerCase();
 
     const emailExiste = await BemVindo.findOne({ email });
 
     if (emailExiste) {
-      return res
-        .status(400)
-        .json('Você já fez a inscrição.');
+      return res.status(400).json('Você já fez a inscrição.');
     }
 
     const novoNome = formataNome(nome);
     let novoNomeLider = '';
 
     if (participaCelula) {
-      novoNomeLider = formataNome(nomeLider)
+      novoNomeLider = formataNome(nomeLider);
     } else {
-      novoNomeLider = null
+      novoNomeLider = null;
     }
 
     const novaInscricao = await BemVindo.create({
@@ -36,7 +40,8 @@ module.exports = {
       email,
       batismoNovoMembro,
       participaCelula,
-      nomeLider: novoNomeLider });
+      nomeLider: novoNomeLider,
+    });
 
     return res.json(novaInscricao);
   },
