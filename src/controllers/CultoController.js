@@ -17,22 +17,21 @@ module.exports = {
     const { nome, telefone, horario } = req.body;
     const email = req.body.email.toLowerCase();
     const proximoDia = process.env.DIA;
+    const novoNome = formataNome(nome);
 
     const dataCulto = new Date(2020, 10, proximoDia, 0, 0, 0);
 
-    const emailExiste = await Culto.findOne({
+    const usuarioExiste = await Culto.findOne({
       dataCulto,
-      email,
+      $or: [{ email }, { nome: novoNome }],
       checkin: horario,
     });
 
-    if (emailExiste) {
+    if (usuarioExiste) {
       return res
         .status(400)
         .json('Você já fez a inscrição para esse dia/horário');
     }
-
-    const novoNome = formataNome(nome);
 
     const novaInscricao = await Culto.create({
       nome: novoNome,
