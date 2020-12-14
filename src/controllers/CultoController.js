@@ -1,5 +1,6 @@
 const Culto = require('../models/Culto');
 const { formataNome } = require('../utils/PrimeiraLetraMaiuscula');
+const { removerAcentos } = require('../utils/RemoverAcentos');
 require('dotenv/config');
 
 module.exports = {
@@ -15,9 +16,9 @@ module.exports = {
 
   async store(req, res) {
     const { nome, telefone, horario } = req.body;
-    const email = req.body.email.toLowerCase();
+    const email = removerAcentos(req.body.email.toLowerCase());
     const proximoDia = process.env.DIA;
-    const novoNome = formataNome(nome);
+    const novoNome = removerAcentos(formataNome(nome));
 
     const dataCulto = new Date(2020, 11, proximoDia, 0, 0, 0);
 
