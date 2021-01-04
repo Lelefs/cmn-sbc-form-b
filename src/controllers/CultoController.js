@@ -7,7 +7,7 @@ module.exports = {
   async index(req, res) {
     const { diaCulto, horario } = req.params;
 
-    const dataCulto = new Date(2020, 11, diaCulto, 0, 0, 0);
+    const dataCulto = new Date(2021, 0, diaCulto, 0, 0, 0);
 
     const presencas = await Culto.find({ dataCulto, checkin: horario });
 
@@ -20,7 +20,7 @@ module.exports = {
     const proximoDia = process.env.DIA;
     const novoNome = removerAcentos(formataNome(nome));
 
-    const dataCulto = new Date(2020, 11, proximoDia, 0, 0, 0);
+    const dataCulto = new Date(2021, 0, proximoDia, 0, 0, 0);
 
     const usuarioExiste = await Culto.findOne({
       dataCulto,
@@ -66,7 +66,7 @@ module.exports = {
   async contagem(req, res) {
     const { diaCulto, horario } = req.params;
 
-    const dataCulto = new Date(2020, 11, diaCulto, 0, 0, 0);
+    const dataCulto = new Date(2021, 0, diaCulto, 0, 0, 0);
 
     const total = await Culto.find({
       dataCulto,
