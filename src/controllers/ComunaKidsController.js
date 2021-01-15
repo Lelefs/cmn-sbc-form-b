@@ -1,5 +1,5 @@
-const ComunaKids = require('../models/ComunaKids');
 const { isAfter } = require('date-fns');
+const ComunaKids = require('../models/ComunaKids');
 const { formataNome } = require('../utils/PrimeiraLetraMaiuscula');
 require('dotenv/config');
 
@@ -17,10 +17,8 @@ module.exports = {
 
     if (isAfter(hoje, dataFinal)) {
       return res
-      .status(400)
-      .json(
-        'Não foi possível completar sua inscrição. Já expirou o prazo.',
-      );
+        .status(400)
+        .json('Não foi possível completar sua inscrição. Já expirou o prazo.');
     }
 
     const novoNome = formataNome(nome);
@@ -54,7 +52,6 @@ module.exports = {
   },
 
   async contagem(req, res) {
-
     const total = await ComunaKids.find().countDocuments();
 
     const totalPresentes = await ComunaKids.find({
