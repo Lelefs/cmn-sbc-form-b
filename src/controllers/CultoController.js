@@ -17,10 +17,10 @@ module.exports = {
   async store(req, res) {
     const { nome, telefone, horario } = req.body;
     const email = removerAcentos(req.body.email.toLowerCase());
-    const proximoDia = process.env.DIA;
+    const diaCulto = process.env.DIA;
     const novoNome = removerAcentos(formataNome(nome));
 
-    const dataCulto = new Date(2021, 0, proximoDia, 0, 0, 0);
+    const dataCulto = new Date(2021, 1, diaCulto, 0, 0, 0);
 
     const usuarioExiste = await Culto.findOne({
       dataCulto,
