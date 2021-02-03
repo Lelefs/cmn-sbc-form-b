@@ -7,7 +7,7 @@ module.exports = {
   async index(req, res) {
     const { diaCulto, horario } = req.params;
 
-    const dataCulto = new Date(2021, 0, diaCulto, 0, 0, 0);
+    const dataCulto = new Date(2021, 1, diaCulto, 0, 0, 0);
 
     const presencas = await Culto.find({ dataCulto, checkin: horario });
 
@@ -66,7 +66,7 @@ module.exports = {
   async contagem(req, res) {
     const { diaCulto, horario } = req.params;
 
-    const dataCulto = new Date(2021, 0, diaCulto, 0, 0, 0);
+    const dataCulto = new Date(2021, 1, diaCulto, 0, 0, 0);
 
     const total = await Culto.find({
       dataCulto,
