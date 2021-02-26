@@ -1,4 +1,4 @@
-const Culto = require('../models/Mulheres');
+const Mulheres = require('../models/Mulheres');
 const { formataNome } = require('../utils/PrimeiraLetraMaiuscula');
 const { removerAcentos } = require('../utils/RemoverAcentos');
 require('dotenv/config');
