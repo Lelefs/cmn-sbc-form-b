@@ -26,6 +26,12 @@ module.exports = {
     return res.json(novaInscricao);
   },
 
+  async show(req, res) {
+    const mulheres = await Mulheres.find();
+
+    return res.json(mulheres);
+  },
+
   async update(req, res) {
     const { _id, compareceuSimNao } = req.body;
 
