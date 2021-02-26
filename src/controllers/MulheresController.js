@@ -9,7 +9,7 @@ module.exports = {
 
     const dataCulto = new Date(2021, 1, diaCulto, 0, 0, 0);
 
-    const presencas = await Culto.find({ dataCulto, checkin: horario });
+    const presencas = await Mulheres.find({ dataCulto, checkin: horario });
 
     return res.json(presencas);
   },
@@ -29,7 +29,7 @@ module.exports = {
   async update(req, res) {
     const { _id, compareceuSimNao } = req.body;
 
-    const culto = await Culto.findById({ _id });
+    const culto = await Mulheres.findById({ _id });
 
     if (!culto) {
       return res
@@ -49,12 +49,12 @@ module.exports = {
 
     const dataCulto = new Date(2021, 1, diaCulto, 0, 0, 0);
 
-    const total = await Culto.find({
+    const total = await Mulheres.find({
       dataCulto,
       checkin: horario,
     }).countDocuments();
 
-    const totalPresentes = await Culto.find({
+    const totalPresentes = await Mulheres.find({
       dataCulto,
       checkin: horario,
       compareceu: true,
