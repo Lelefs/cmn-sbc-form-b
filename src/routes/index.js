@@ -19,11 +19,8 @@ routes.get('/staff', StaffController.index);
 routes.get('/staff/all', StaffController.show);
 routes.post('/staff', StaffController.store);
 
-
 routes.get('/mulheres/all', MulheresController.show);
 routes.post('/mulheres', MulheresController.store);
 routes.put('/mulheres', MulheresController.update);
-
-
 
 module.exports = routes;
