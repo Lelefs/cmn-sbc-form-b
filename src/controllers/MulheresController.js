@@ -16,11 +16,24 @@ module.exports = {
 
   async store(req, res) {
     const { nome, celula, telefone } = req.body;
-   
+    const novoNome = removerAcentos(formataNome(nome));
+    const novaCelula = removerAcentos(formataNome(celula));
+
+    const usuarioExiste = await Mulheres.findOne({
+      nome: novoNome,
+      celula: novaCelula,
+    });
+
+    if (usuarioExiste) {
+      return res
+        .status(400)
+        .json('Você já fez a inscrição para o culto das mulheres');
+    }
+
     const novaInscricao = await Mulheres.create({
-      nome,
-      celula,
-      telefone
+      nome: novoNome,
+      celula: novaCelula,
+      telefone,
     });
 
     return res.json(novaInscricao);
@@ -45,24 +58,15 @@ module.exports = {
         );
     }
 
-    await Culto.updateOne({ _id }, { compareceu: compareceuSimNao });
+    await Mulheres.updateOne({ _id }, { compareceu: compareceuSimNao });
 
     return res.json('Checkin realizado com sucesso!');
   },
 
   async contagem(req, res) {
-    const { diaCulto, horario } = req.params;
-
-    const dataCulto = new Date(2021, 1, diaCulto, 0, 0, 0);
-
-    const total = await Mulheres.find({
-      dataCulto,
-      checkin: horario,
-    }).countDocuments();
+    const total = await Mulheres.find().countDocuments();
 
     const totalPresentes = await Mulheres.find({
-      dataCulto,
-      checkin: horario,
       compareceu: true,
     }).countDocuments();
 

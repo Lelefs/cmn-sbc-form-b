@@ -20,6 +20,7 @@ routes.get('/staff/all', StaffController.show);
 routes.post('/staff', StaffController.store);
 
 routes.get('/mulheres/all', MulheresController.show);
+routes.get('/mulheres/contagem', MulheresController.contagem);
 routes.post('/mulheres', MulheresController.store);
 routes.put('/mulheres', MulheresController.update);
 
