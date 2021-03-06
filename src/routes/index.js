@@ -1,6 +1,7 @@
 const { Router } = require('express');
 const CultoController = require('../controllers/CultoController');
 const BemVindoController = require('../controllers/BemVindoController');
+const EscolaMinisterialController = require('../controllers/EscolaMinisterialController');
 const StaffController = require('../controllers/StaffController');
 const MulheresController = require('../controllers/MulheresController');
 
@@ -23,5 +24,9 @@ routes.get('/mulheres/all', MulheresController.show);
 routes.get('/mulheres/contagem', MulheresController.contagem);
 routes.post('/mulheres', MulheresController.store);
 routes.put('/mulheres', MulheresController.update);
+
+routes.get('/escolaministerial', EscolaMinisterialController.index);
+routes.get('/escolaministerial/all', EscolaMinisterialController.show);
+routes.post('/escolaministerial', EscolaMinisterialController.store);
 
 module.exports = routes;
