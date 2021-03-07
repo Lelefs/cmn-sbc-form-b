@@ -25,7 +25,9 @@ const criar = async data => {
   }
 
   const usuarioExiste = await EscolaMinisterial.findOne({
-    $or: [{ nome }, { telefone }],
+    nome,
+    celula,
+    telefone,
   });
 
   if (usuarioExiste) {
