@@ -18,6 +18,14 @@ const EscolaMinisterialSchema = new Schema(
       type: String,
       required: true,
     },
+    liderAuxiliar: {
+      type: Boolean,
+      default: false,
+    },
+    pretendeSerLider: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,

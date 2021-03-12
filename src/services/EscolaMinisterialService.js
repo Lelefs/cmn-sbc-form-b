@@ -1,4 +1,3 @@
-const { isAfter } = require('date-fns');
 const EscolaMinisterial = require('../models/EscolaMinisterial');
 const { formataNome } = require('../utils/PrimeiraLetraMaiuscula');
 const { removerAcentos } = require('../utils/RemoverAcentos');
@@ -6,15 +5,7 @@ const { removerAcentos } = require('../utils/RemoverAcentos');
 const criar = async data => {
   const nome = await removerAcentos(formataNome(data.nome));
   const celula = await removerAcentos(formataNome(data.celula));
-  const { telefone, tempoComunidade } = data;
-  const hoje = new Date();
-  const dataFinal = new Date(2021, 2, 14, 20, 59, 59);
-
-  if (isAfter(hoje, dataFinal)) {
-    throw new Error(
-      'Não foi possível completar sua inscrição. Já expirou o prazo.',
-    );
-  }
+  const { telefone, tempoComunidade, liderAuxiliar, pretendeSerLider } = data;
 
   const totalInscricoes = await EscolaMinisterial.find().countDocuments();
 
@@ -41,6 +32,8 @@ const criar = async data => {
     celula,
     telefone,
     tempoComunidade,
+    liderAuxiliar,
+    pretendeSerLider,
   });
 
   return { novoUsuario };
