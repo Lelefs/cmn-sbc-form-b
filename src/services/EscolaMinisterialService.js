@@ -9,7 +9,7 @@ const criar = async data => {
 
   const totalInscricoes = await EscolaMinisterial.find().countDocuments();
 
-  if (totalInscricoes >= 15) {
+  if (totalInscricoes >= 18) {
     throw new Error(
       'Não foi possível completar sua inscrição. Vagas esgotadas.',
     );
