@@ -40,9 +40,9 @@ module.exports = {
   },
 
   async show(req, res) {
-    const Mag = await Mag.find();
+    const pessoas = await Mag.find();
 
-    return res.json(Mag);
+    return res.json(pessoas);
   },
 
   async update(req, res) {
