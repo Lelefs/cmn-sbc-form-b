@@ -40,9 +40,9 @@ module.exports = {
   },
 
   async show(req, res) {
-    const MagOneWay = await MagOneWay.find();
+    const pessoas = await MagOneWay.find();
 
-    return res.json(MagOneWay);
+    return res.json(pessoas);
   },
 
   async update(req, res) {
